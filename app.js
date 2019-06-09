@@ -16,7 +16,7 @@ const app = express();
 app.locals.moment= require('moment');
 
 const {getHomePage} = require('./routes/index');
-const {addCandidatePage, addCandidate, editCandidate, editCandidatePage} = require('./routes/candidate.js');
+const {addCandidatePage} = require('./routes/candidate.js');
 const port = 5000;
 
 // create connection to database

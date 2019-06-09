@@ -1,0 +1,50 @@
+<% include partials/header.ejs %>
+<% include partials/modal.ejs %>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+    function dateValidator() {
+        let input = $('#birthdate').val();
+        let birthdate = new Date(input);
+        let dateRealDate = new Date(birthdate.getFullYear()+18, birthdate.getMonth()-1, birthdate.getDate());
+        console.log(birthdate);
+        console.log(birthdate);
+        console.log(dateRealDate);
+        ( dateRealDate <= new Date() ) ? $("#submit-button").attr("disabled", false) : $("#submit-button").attr("disabled", true);
+    }
+</script>
+
+<article class="card">
+    <div class="table-responsive">
+         <table class="table table-hovered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Birthdate</th>
+                    <th scope="col">Submit</th>
+                    <!--<th scope="col">Candidate's CV</th>-->
+                </tr>
+            </thead>
+            <tbody>
+             
+                    <td>
+                            <input id="fullName" type="text" name="name" placeholder="What is your full name?" required/> 
+                    </td>
+
+                    <td>    
+                            <input id="birthdate" type="date" name="birthdate" placeholder="What is your birthdate?" required onblur='dateValidator()' />  
+                    </td>
+
+                    <td>
+                                <button id="submit-button" type="button">Click Me!</button> 
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    
+        
+    </div>
+</article>
+
+</body>
+
+</html>
