@@ -1,0 +1,64 @@
+<% include partials/header.ejs %>
+<% include partials/modal.ejs %>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+
+    function dateValidator() {
+
+        let input = $('#birthdate').val();
+        let birthdate = new Date(input);
+        let dateRealDate = new Date(birthdate.getFullYear()+18, birthdate.getMonth()-1, birthdate.getDate());
+
+        console.log(birthdate);
+        console.log(birthdate);
+        console.log(dateRealDate);
+        
+        return new Date(birthdate.getFullYear()+18, birthdate.getMonth()-1, birthdate.getDate()) <= new Date();
+    }
+</script>
+
+<article class="card">
+    <div class="table-responsive">
+    <% if (candidates.length > 0) {%>
+        <table class="table table-hovered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Birthdate</th>
+                    <th scope="col">Candidate's CV</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% candidates.forEach((candidate, index) => { %>
+                    <tr>
+                        <td><%= candidate.full_name %></td>
+                        <td><%= moment(candidate.birthdate).format( 'DD/MM/YYYY') %></t>
+                        <td>@<%= candidate.cv_file %></td>
+                    </tr>
+                <% }) %>
+                <tr>
+                    <td>
+                            <input id="fullName" type="text" name="name" placeholder="What is your full name?" required/> 
+                    </td>
+
+                    <td>    
+                            <input id="birthdate" type="date" name="birthdate" placeholder="What is your birthdate?" required onblur="dateValidator()" />  
+                    </td>
+
+                    <td>
+                            
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <% } else { %>
+        <p class="text-center">No candidates found. Go <a href="/add" >here</a> to add candidates.</p>
+        <% } %>
+
+    </div>
+</article>
+
+</body>
+
+</html>
