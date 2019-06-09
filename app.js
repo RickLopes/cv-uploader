@@ -16,7 +16,7 @@ const app = express();
 app.locals.moment= require('moment');
 
 const {getHomePage} = require('./routes/index');
-const {addCandidatePage} = require('./routes/candidate.js');
+const {addCandidatePage, addCandidate, editCandidate, editCandidatePage} = require('./routes/candidate.js');
 const port = 5000;
 
 // create connection to database
@@ -50,10 +50,11 @@ app.use(fileUpload()); // configure fileupload
 // routes for the app
 app.get('/', getHomePage);
 app.get('/add', addCandidatePage);
+app.post('/add', addCandidate);
+
 
 /*
 app.get('/edit/:id', editCandidatePage);
-app.post('/add', addCandidate);
 app.post('/edit/:id', editCandidate);
 */
 

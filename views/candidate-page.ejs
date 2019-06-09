@@ -1,6 +1,5 @@
 <% include partials/header.ejs %>
 <% include partials/modal.ejs %>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script>
     function dateValidator() {
         let input = $('#birthdate').val();
@@ -12,33 +11,43 @@
         ( dateRealDate <= new Date() ) ? $("#submit-button").attr("disabled", false) : $("#submit-button").attr("disabled", true);
     }
 </script>
-
-<article class="card">
+<% if (message != '') { %>
+    <p class="text-center text-danger"><%= message %></p>
+<% } %>
+<article class="card card-submit">
     <div class="table-responsive">
          <table class="table table-hovered">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Full Name</th>
                     <th scope="col">Birthdate</th>
-                    <th scope="col">Submit</th>
-                    <!--<th scope="col">Candidate's CV</th>-->
+                    <th scope="col">Candidate's CV</th>
+                    <th class="head-submit"></th>
                 </tr>
             </thead>
             <tbody>
-             
-                    <td>
-                            <input id="fullName" type="text" name="name" placeholder="What is your full name?" required/> 
-                    </td>
+                <tr>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <td>
+                                <input id="fullName" type="text" name="full_name" placeholder="What is your full name?" required/> 
+                        </td>
 
-                    <td>    
-                            <input id="birthdate" type="date" name="birthdate" placeholder="What is your birthdate?" required onblur='dateValidator()' />  
-                    </td>
+                        <td>    
+                                <input id="birthdate" type="date" name="birthdate" placeholder="What is your birthdate?" required onfocusout="dateValidator()" />  
+                        </td>
+                    
+                        <td>
+                                <input id="cv_file" type="file" name="cv_file"  required />  
+                        </td>
 
-                    <td>
-                                <button id="submit-button" type="button">Click Me!</button> 
-                    </td>
+                        <td>
+                                <button id="submit-button" type="submit">Submit!</button>
+                        </td>
+                    </form>
                 </tr>
             </tbody>
+            
+
         </table>
     
         
