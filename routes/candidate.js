@@ -1,11 +1,10 @@
-const fs = require('fs');
-const mimetype = require('mimetype');
 
 module.exports = {
     addCandidatePage: (req, res) => {
         res.render('candidate-page.ejs', {
-            title: "CV Uploader - Candidate page"
-            ,message: '' 
+            title: "CV Uploader - Candidate page",
+            message: '',
+            error: false,
         });
     },
     addCandidate: (req, res) => {
@@ -21,7 +20,7 @@ module.exports = {
         let fileExtension = uploadedFile.mimetype.split('/')[1];
         cv_name = full_name.split(' ').join('') + '.' + fileExtension;
 
-        let nameQuery = "SELECT * FROM `candidates` WHERE full_name = '" + full_name + "' AND `birthdate` = '" + birthdate +"' ";
+        let nameQuery = "SELECT * FROM `candidates` WHERE full_name = '" + full_name + "' AND `birthdate` = '" + birthdate +"'";
 
         db.query(nameQuery, (err, result) => {
             if (err) {
@@ -31,7 +30,8 @@ module.exports = {
                 message = 'Candidate already exists';
                 res.render('candidate-page.ejs', {
                     message,
-                    title:"CV Uploader - Candidate page"
+                    title:"CV Uploader - Candidate page",
+                    error: true,
                 });
             } else {
                 // check the filetype before uploading it
@@ -48,15 +48,21 @@ module.exports = {
                             if (err) {
                                 return res.status(500).send(err);
                             }
-                            return res.status(200);
-                            //res.redirect('/add/#');
+                            //res.redirect('/add/#'+full_name.split(' ').join('_')+'');
+                            message = full_name + " your CV was successfully submitted! Congratulations!"
+                            res.render('candidate-page.ejs', {
+                                message,
+                                title: "CV Uploader - Candidate page",
+                                error: false,
+                            });
                         });
                     });
                 } else {
-                    message = "Invalid file format. Sumbit your file in 'pdf' format.";
+                    message = "Invalid file format. Submit your file in 'pdf' format.";
                     res.render('candidate-page.ejs', {
                         message,
                         title: "CV Uploader - Candidate page",
+                        error: true,
                     });
                 }
             }
