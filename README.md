@@ -7,11 +7,11 @@ It uses mysql as the database. The project is mainly done with javascript.
 
 # Usage:
 Steps:
-- First you should run the sql script in the db directory, so it creates your database;
-- Then, on the main directory, run the command " npm install";
-- You need to configure your database credentials on the file app.js.
+- First you should **run the sql script** in the directory **/db/**, so it creates your database;
+- Then, on the main directory, run the command " **npm install** " ;
+- You need to configure your **database credentials** on the file **app.js** .
 
-> TODO : When user submits file, on page refresh, allow to download the same file.
+> **TODO** : When user submits file, on page refresh, allow to download the same file.
 
   
   
