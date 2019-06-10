@@ -40,8 +40,12 @@ html,body {
     color: #2a2e33;
 }
 
+.modal-title{
+    color: #54A6DD
+}
+
 .modal-content {
-    background-color: #393e44;
+    background-color: #2a2e33;
     color: white;
 }
 
@@ -147,7 +151,7 @@ nav {
 }
 
 
-.text-danger{
+.text-danger, .text-success{
     margin-block: 50px;
     font-size: 26px;
 }
